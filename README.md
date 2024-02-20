@@ -3,7 +3,9 @@ The Puzzle of Index Option Returns
 
 # About this project
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Replicate Table 2 and Table B1. Table 3 or 4 may be difficult, but may be attempted as a stretch goal.
+
+Data used: OptionMetrics. CBOE Options data or Option Suite by WRDS may be helpful.
 
 # Quick Start
 
