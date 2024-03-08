@@ -128,6 +128,6 @@ def _demo():
 if __name__ == "__main__":
 
     OptionMetrics = merge_data()
-    path = Path(DATA_DIR) / 'pulled' / 'OptionMetrics.parquet'
+    path = Path(DATA_DIR) / 'pulled' / 'OptionsMetrics.parquet'
     OptionMetrics.to_parquet(path)
     db.close()
