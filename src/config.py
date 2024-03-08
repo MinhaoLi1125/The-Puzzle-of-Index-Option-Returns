@@ -25,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = (BASE_DIR / config('DATA_DIR', default=Path('data'), cast=Path)).resolve()
 OUTPUT_DIR = (BASE_DIR / config('OUTPUT_DIR', default=Path('output'), cast=Path)).resolve()
 WRDS_USERNAME = config("WRDS_USERNAME", default="")
-START_DATE="1913-01-01"
-END_DATE="2023-10-01"
+START_DATE="1996-01-04"
+END_DATE="2012-01-31"
 if __name__ == "__main__":
     
     ## If they don't exist, create the data and output directories
