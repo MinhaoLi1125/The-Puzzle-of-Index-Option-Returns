@@ -67,7 +67,7 @@ def task_filter_merge():
 
     return {
         'actions': [
-            "ipython ./src/filter_merge.py"
+            "ipython ./src/table2_analysis.py"
         ],     
         'targets': targets, 
         'file_dep': file_dep,
@@ -75,6 +75,20 @@ def task_filter_merge():
         'verbosity': 2,
     }
 
-# def task_table2_analysis():
+def task_table2_analysis():
+    file_dep = [
+        "./src/table2_analysis.py"
+    ]
     
-#     return
+    targets = [OUTPUT_DIR.joinpath(f"table2_month.xlxs")]
+
+    return {
+        'actions': [
+            "ipython ./src/table2_analysis.py"
+        ],     
+        'targets': targets, 
+        'file_dep': file_dep,
+        'clean': True,
+        'verbosity': 2,
+    }
+
