@@ -45,7 +45,7 @@ def task_load_OptionsMetrics():
         "./src/load_OptionsMetrics.py"
     ]
     
-    targets = [DATA_DIR / "pulled" / "OptionMetrics.parquet"]
+    targets = [DATA_DIR / "pulled" / "OptionsMetrics.parquet"]
 
     return {
         'actions': [
