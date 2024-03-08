@@ -117,7 +117,7 @@ def merge_data():
     return df
 
 def load_OptionMetrics(data_dir=DATA_DIR):
-    path = data_dir / 'pulled'/ 'OptionMetrics.parquet'
+    path = data_dir / 'pulled'/ 'OptionsMetrics.parquet'
     df = pd.read_parquet(path)
     
     return df
