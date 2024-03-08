@@ -14,6 +14,7 @@ import platform
 
 OUTPUT_DIR = Path(config.OUTPUT_DIR)
 DATA_DIR = Path(config.DATA_DIR)
+REPORTS_DIR = Path(config.REPORTS_DIR)
 
 # fmt: off
 ## Helper functions for automatic execution of Jupyter notebooks
@@ -44,7 +45,7 @@ def task_load_OptionsMetrics():
         "./src/load_OptionsMetrics.py"
     ]
     
-    targets = [DATA_DIR / "" / ""]
+    targets = [DATA_DIR / "pulled" / "OptionMetrics.parquet"]
 
     return {
         'actions': [
@@ -63,7 +64,14 @@ def task_filter_merge():
         "./src/filter_merge.py"
     ]
     
-    targets = [DATA_DIR / "data_filter_3.parquet"]
+    file_output = [
+        
+    "./data/data_filter_3.parquet", 
+    "./output/latex.xlsx"    
+        
+    ]
+    
+    targets = [file for file in file_output]
 
     return {
         'actions': [
@@ -80,6 +88,7 @@ def task_table2_analysis():
         "./src/table2_analysis.py"
     ]
     
+
     targets = [OUTPUT_DIR.joinpath(f"table2_month.xlxs")]
 
     return {
@@ -92,3 +101,44 @@ def task_table2_analysis():
         'verbosity': 2,
     }
 
+def task_df_to_latex_write_up():
+    file_dep = [
+        "./src/df_to_latex_writeup.py"
+    ]
+    
+    targets = [REPORTS_DIR / "write-up.tex"]
+
+    return {
+        'actions': [
+            "ipython ./src/df_to_latex_writeup.py"
+        ],     
+        'targets': targets, 
+        'file_dep': file_dep,
+        'clean': True,
+        'verbosity': 2,
+    }
+    
+# def task_compile_latex_docs():
+#     """Compile the LaTeX documents to PDFs"""
+#     file_dep = [
+#         "./reports"
+
+#     ]
+#     file_output = [
+#         "./reports/report_example.pdf",
+#         "./reports/slides_example.pdf",
+#     ]
+#     targets = [file for file in file_output]
+
+#     return {
+#         "actions": [
+#             "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
+#             "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
+#             "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
+#             # "latexmk -CA -cd ../reports/",
+#         ],
+#         "targets": targets,
+#         "file_dep": file_dep,
+#         "clean": True,
+#     }
