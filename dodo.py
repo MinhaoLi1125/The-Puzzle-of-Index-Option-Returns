@@ -44,7 +44,7 @@ def task_load_OptionsMetrics():
         "./src/load_OptionsMetrics.py"
     ]
     
-    targets = [DATA_DIR / "pulled" / "OptionsMetrics.parquet"]
+    targets = [DATA_DIR / "" / ""]
 
     return {
         'actions': [
@@ -54,4 +54,27 @@ def task_load_OptionsMetrics():
         'targets': targets, 
         'file_dep': file_dep,
         'clean': True,
-        'verbosity
+        'verbosity': 2,
+    }
+    
+def task_filter_merge():
+    
+    file_dep = [
+        "./src/filter_merge.py"
+    ]
+    
+    targets = [DATA_DIR / "data_filter_3.parquet"]
+
+    return {
+        'actions': [
+            "ipython ./src/filter_merge.py"
+        ],     
+        'targets': targets, 
+        'file_dep': file_dep,
+        'clean': True,
+        'verbosity': 2,
+    }
+
+# def task_table2_analysis():
+    
+#     return
