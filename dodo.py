@@ -31,13 +31,20 @@ def jupyter_clear_output(notebook):
     return f"jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --inplace ./src/{notebook}.ipynb"
 # fmt: on
 
+# Check if .env file exists. If not, create it by copying from .env.example
+env_file = ".env"
+env_example_file = "env.example"
+
+if not os.path.exists(env_file):
+    shutil.copy(env_example_file, env_file)
+
 def task_load_OptionsMetrics():
     file_dep = [
-        "./src/config.py"
+        "./src/config.py",
         "./src/load_OptionsMetrics.py"
     ]
     
-    targets = [DATA_DIR / "pulled" / "OptionMetrics.parquet"]
+    targets = [DATA_DIR / "pulled" / "OptionsMetrics.parquet"]
 
     return {
         'actions': [
@@ -46,5 +53,5 @@ def task_load_OptionsMetrics():
         ],     
         'targets': targets, 
         'file_dep': file_dep,
-        'clean': True
-    }
+        'clean': True,
+        'verbosity
