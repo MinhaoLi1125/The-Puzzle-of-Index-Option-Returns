@@ -58,30 +58,32 @@ def task_load_OptionsMetrics():
         'verbosity': 2,
     }
     
+
 def task_filter_merge():
     
     file_dep = [
+        "./src/config.py",
         "./src/filter_merge.py"
     ]
     
-    file_output = [
-        
-    "./data/data_filter_3.parquet", 
-    "./output/latex.xlsx"    
-        
-    ]
     
-    targets = [file for file in file_output]
-
+    targets = [
+        DATA_DIR / "manual" / "data_filter_3.parquet", 
+        OUTPUT_DIR / "latex.xlsx"
+    ]
+               
     return {
         'actions': [
-            "ipython ./src/table2_analysis.py"
+            "ipython ./src/config.py",
+            "ipython ./src/filter_merge.py"
         ],     
         'targets': targets, 
         'file_dep': file_dep,
         'clean': True,
         'verbosity': 2,
     }
+
+
 
 def task_table2_analysis():
     file_dep = [
@@ -101,6 +103,32 @@ def task_table2_analysis():
         'verbosity': 2,
     }
 
+
+def task_plot():
+    file_dep = [
+        "./src/config.py",
+        "./src/plot.py"
+    ]
+    
+    targets = [
+        OUTPUT_DIR / "iv_plt.png", 
+        OUTPUT_DIR /'ttm_plt.png', 
+        OUTPUT_DIR / 'moneyness_plt.png',
+        
+    ]
+
+    return {
+        'actions': [
+            "ipython ./src/config.py",
+            "ipython ./src/plot.py"
+        ],     
+        'targets': targets, 
+        'file_dep': file_dep,
+        'clean': True,
+        'verbosity': 2,
+    }
+
+
 def task_df_to_latex_write_up():
     file_dep = [
         "./src/df_to_latex_writeup.py"
@@ -118,27 +146,22 @@ def task_df_to_latex_write_up():
         'verbosity': 2,
     }
     
-# def task_compile_latex_docs():
-#     """Compile the LaTeX documents to PDFs"""
-#     file_dep = [
-#         "./reports"
+def task_compile_latex_docs():
+    file_dep = [
+        "./reports/write-up.tex",
+    ]
+    file_output = [
+        "./reports/write-up.pdf",
+    ]
+    targets = [file for file in file_output]
 
-#     ]
-#     file_output = [
-#         "./reports/report_example.pdf",
-#         "./reports/slides_example.pdf",
-#     ]
-#     targets = [file for file in file_output]
-
-#     return {
-#         "actions": [
-#             "latexmk -xelatex -cd ./reports/report_example.tex",  # Compile
-#             "latexmk -xelatex -c -cd ./reports/report_example.tex",  # Clean
-#             "latexmk -xelatex -cd ./reports/slides_example.tex",  # Compile
-#             "latexmk -xelatex -c -cd ./reports/slides_example.tex",  # Clean
-#             # "latexmk -CA -cd ../reports/",
-#         ],
-#         "targets": targets,
-#         "file_dep": file_dep,
-#         "clean": True,
-#     }
+    return {
+        "actions": [
+            "latexmk -xelatex -cd ./reports/write-up.tex",  # Compile
+            "latexmk -xelatex -c -cd ./reports/write-up.tex",  # Clean
+            # "latexmk -CA -cd ../reports/",
+        ],
+        "targets": targets,
+        "file_dep": file_dep,
+        "clean": True,
+    }
