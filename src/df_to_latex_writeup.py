@@ -1,8 +1,16 @@
 import pandas as pd
 import os
+import config
+DATA_DIR = config.DATA_DIR
+OUTPUT_DIR = config.OUTPUT_DIR
+REPORTS_DIR = config.REPORTS_DIR
 
-path1 = f'../output/table2_all.xlsx'
-path2 = f'../output/latex.xlsx'
+
+# path1 = f'../output/table2_all.xlsx'
+# path2 = f'../output/latex.xlsx'
+
+path1 = OUTPUT_DIR / "table2_all.xlsx"
+path2 = OUTPUT_DIR / "latex.xlsx"
 table1 = pd.read_excel(path1, names=['', 'Calls', 'CallPercentage', 'Puts', 'PutPercentage'])
 table2 = pd.read_excel(path2)
 
@@ -63,7 +71,7 @@ challenges:
 
 
 # Write to .tex file
-tex_file = f'../reports/write-up.tex'
+tex_file = REPORTS_DIR / "write-up.tex"
 with open(tex_file, "w") as file:
     file.write(latex_content1)
     file.write(latex_content2)
