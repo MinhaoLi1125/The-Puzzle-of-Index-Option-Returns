@@ -12,14 +12,18 @@ warnings.filterwarnings("ignore")
 import filter_level1
 import filter_level2
 import filter_level3
+import config
+
+DATA_DIR = config.DATA_DIR
+OUTPUT_DIR = config.OUTPUT_DIR
 
 
 
-df_filtered= pd.read_parquet('./data/data_filter_3.parquet')
+df_filtered= pd.read_parquet(DATA_DIR / "manual" / "data_filter_3.parquet")
 
 
 ## 这个地址需要修改成DATA_DIR / "pulled" / "OptionsMetrics.parquet"
-parquet_file = pq.ParquetFile('./data/pulled/OptionMetrics.parquet')
+parquet_file = pq.ParquetFile(DATA_DIR /  "pulled" / "OptionsMetrics.parquet")
 
 df_raw= parquet_file.read().to_pandas()
 
@@ -41,7 +45,7 @@ def iv_plt():
 
     plt.tight_layout()
 
-    plt.savefig('./output/iv_plt.png')
+    plt.savefig(OUTPUT_DIR / 'iv_plt.png')
 
     plt.show()
 
@@ -66,15 +70,15 @@ def ttm_plt():
 
     plt.tight_layout()
 
-    plt.savefig('./output/ttm_plt.png')
+    plt.savefig(OUTPUT_DIR /'ttm_plt.png')
 
     plt.show()
 
 
-parquet_file_raw = pq.ParquetFile('./data/pulled/OptionMetrics.parquet')
+parquet_file_raw = pq.ParquetFile(DATA_DIR / "pulled" / 'OptionsMetrics.parquet')
 df_raw = parquet_file_raw.read().to_pandas()
 
-parquet_file_new = pq.ParquetFile('./data/data_filter_3.parquet')
+parquet_file_new = pq.ParquetFile(DATA_DIR / "manual" / "data_filter_3.parquet")
 df_new = parquet_file_new.read().to_pandas()
 
 df_raw['ratio'] = df_raw['close'] / df_raw['strike_price']*1000
@@ -100,7 +104,7 @@ def moneyness_plt():
 
     plt.tight_layout()
 
-    plt.savefig('./output/moneyness_plt.png')
+    plt.savefig(OUTPUT_DIR / 'moneyness_plt.png')
 
     plt.show()
 
