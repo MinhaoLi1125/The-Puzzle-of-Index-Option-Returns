@@ -12,7 +12,7 @@ import filter_level1
 import filter_level2
 import filter_level3
 
-parquet_file = pq.ParquetFile('./data/pulled/OptionMetrics.parquet')
+parquet_file = pq.ParquetFile('./data/pulled/OptionsMetrics.parquet')
 df = parquet_file.read().to_pandas()
 
 #print(df.head())
