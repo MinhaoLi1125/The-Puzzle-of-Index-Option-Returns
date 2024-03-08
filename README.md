@@ -10,7 +10,10 @@ Data used: OptionMetrics. CBOE Options data or Option Suite by WRDS may be helpf
 # Team Members and Tasks
 
 Minhao Li: Pull Data and Data Cleaning
-Yun Hu: Filter
-Zean Li: Filter 
-Zilin Song: LaTex
+
+Yun Hu: Filter 1
+
+Zean Li: Filter 2 and LaTex
+
+Zilin Song: Filter 3
 
