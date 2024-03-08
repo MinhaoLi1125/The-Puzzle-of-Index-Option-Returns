@@ -41,14 +41,6 @@ def pull_Option_price(start_date=START_DATE, end_date=END_DATE):
             WHERE
                 (opp.secid = 108105)
             
-            AND (
-                (opp.exdate BETWEEN opp.date AND (opp.date + INTERVAL '30 days'))
-                OR
-                (opp.exdate BETWEEN opp.date AND (opp.date + INTERVAL '60 days'))
-                OR
-                (opp.exdate BETWEEN opp.date AND (opp.date + INTERVAL '91 days'))
-            )
-            
         """ 
         
         data = db.raw_sql(query, date_cols=["date"])
