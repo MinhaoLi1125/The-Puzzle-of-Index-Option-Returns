@@ -253,7 +253,7 @@ def table2_analysis(path='filter'):
     new_dT.insert(insert_index, ' ', new_column1_values)
     new_dT.insert(insert_index + 2, '', new_column2_values)
 
-    new_dT.to_parquet(OUTPUT_DIR.joinpath(f"table2_all.parquet"))
+    new_dT.to_excel(OUTPUT_DIR.joinpath(f"table2_all.xlsx"))
 
     dTM = analyze_table2_info(dfM)
 
@@ -276,7 +276,7 @@ def table2_analysis(path='filter'):
     new_dTM.insert(insert_index, ' ', new_column1_values)
     new_dTM.insert(insert_index + 2, '', new_column2_values)
 
-    new_dTM.to_parquet(OUTPUT_DIR.joinpath(f"table2_month.parquet"))
+    new_dTM.to_excel(OUTPUT_DIR.joinpath(f"table2_month.xlxs"))
     
     
     return df, new_dT, new_dTM
