@@ -9,8 +9,8 @@ warnings.filterwarnings("ignore")
 
 
 import filter_level1
-import filter_andy
-import filter_2_3_ZS
+import filter_level2
+import filter_level3
 
 parquet_file = pq.ParquetFile('OptionMetrics.parquet')
 df = parquet_file.read().to_pandas()
@@ -55,37 +55,37 @@ deleted.append(remaining[4]-len(df))
 filter.append(' ')
 step.append('delete_zero_bid_filter')
 
-df=filter_andy.DaystoMaturity_filter(df)
+df=filter_level2.DaystoMaturity_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[5]-len(df))
 filter.append('Level 2 filters')
 step.append('DaystoMaturity_filter')
 
-df=filter_andy.ExtremeIV_filter(df)
+df=filter_level2.ExtremeIV_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[6]-len(df))
 filter.append(' ')
 step.append('ExtremeIV_filter')
 
-df=filter_2_3_ZS.moneyness_filter(df)
+df=filter_level3.moneyness_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[7]-len(df))
 filter.append(' ')
 step.append('moneyness(0.8~1.2)_filter')
 
-df=filter_2_3_ZS.implied_interest_rate_filter(df)
+df=filter_level3.implied_interest_rate_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[8]-len(df))
 filter.append(' ')
 step.append('implied_interest_rate_filter')
 
-df=filter_2_3_ZS.IV_filter(df)
+df=filter_level3.IV_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[9]-len(df))
 filter.append('Level 3 filters')
 step.append('IV_filter')
 
-df=filter_2_3_ZS.parity_filter(df)
+df=filter_level3.parity_filter(df)
 remaining.append(len(df))
 deleted.append(remaining[10]-len(df))
 filter.append(' ')
