@@ -12,8 +12,14 @@ import filter_level1
 import filter_level2
 import filter_level3
 
-parquet_file = pq.ParquetFile('./data/pulled/OptionsMetrics.parquet')
-df = parquet_file.read().to_pandas()
+import config
+DATA_DIR = config.DATA_DIR
+OUTPUT_DIR = config.OUTPUT_DIR
+
+# parquet_file = pq.ParquetFile(DATA_DIR / "pulled" / "OptionsMetrics.parquet")
+# df = parquet_file.read().to_pandas()
+
+df = pd.read_parquet(DATA_DIR / "pulled" / "OptionsMetrics.parquet")
 
 #print(df.head())
 filter=[]
@@ -102,6 +108,6 @@ summary = pd.DataFrame({
 }).set_index('Filter')
 
 print(summary)
-df.to_parquet('./data/data_filter_3.parquet')
+df.to_parquet(DATA_DIR / "manual" / "data_filter_3.parquet")
 
-summary.to_excel('./output/latex.xlsx')
+summary.to_excel(OUTPUT_DIR / "latex.xlsx")
