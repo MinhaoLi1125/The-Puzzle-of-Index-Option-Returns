@@ -223,7 +223,7 @@ def analyze_table2_info(df):
     return dT2
 
 def table2_analysis(path='filter'): 
-    save_path3 = DATA_DIR.joinpath(f"manual\data_{path}_3.parquet")
+    save_path3 = DATA_DIR.joinpath(f"manual/data_{path}_3.parquet")
     df= pd.read_parquet(save_path3)
     df = df.reset_index()
     df = adjust_weekend_expirations(df)
