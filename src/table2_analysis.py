@@ -240,13 +240,13 @@ def table2_analysis(path='filter'):
     sum1 = new_dT['Calls'].sum()
     sum2 = new_dT['Puts'].sum()
 
-    new_column1_values = ["{:.2%}".format(new_dT.loc['Found','Calls']/sum1), 
-                        "{:.2%}".format(new_dT.loc['Missing','Calls']/sum1),
-                        "{:.2%}".format(new_dT.loc['Expired','Calls']/sum1)]
+    new_column1_values = [new_dT.loc['Found','Calls']/sum1, 
+                        new_dT.loc['Missing','Calls']/sum1,
+                        new_dT.loc['Expired','Calls']/sum1]
     new_column2_values = [
-                        "{:.2%}".format(new_dT.loc['Found','Puts']/sum2), 
-                        "{:.2%}".format(new_dT.loc['Missing','Puts']/sum2),
-                        "{:.2%}".format(new_dT.loc['Expired','Puts']/sum2)]
+                        new_dT.loc['Found','Puts']/sum2, 
+                        new_dT.loc['Missing','Puts']/sum2,
+                        new_dT.loc['Expired','Puts']/sum2]
 
     insert_index = 1
 
@@ -263,13 +263,13 @@ def table2_analysis(path='filter'):
     sum1 = new_dTM['Calls'].sum()
     sum2 = new_dTM['Puts'].sum()
 
-    new_column1_values = ["{:.2%}".format(new_dTM.loc['Found','Calls']/sum1), 
-                        "{:.2%}".format(new_dTM.loc['Missing','Calls']/sum1),
-                        "{:.2%}".format(new_dTM.loc['Expired','Calls']/sum1)]
+    new_column1_values = [new_dTM.loc['Found','Calls']/sum1, 
+                        new_dTM.loc['Missing','Calls']/sum1,
+                        new_dTM.loc['Expired','Calls']/sum1]
     new_column2_values = [
-                        "{:.2%}".format(new_dTM.loc['Found','Puts']/sum2), 
-                        "{:.2%}".format(new_dTM.loc['Missing','Puts']/sum2),
-                        "{:.2%}".format(new_dTM.loc['Expired','Puts']/sum2)]
+                        new_dTM.loc['Found','Puts']/sum2, 
+                        new_dTM.loc['Missing','Puts']/sum2,
+                        new_dTM.loc['Expired','Puts']/sum2]
 
     insert_index = 1
 
