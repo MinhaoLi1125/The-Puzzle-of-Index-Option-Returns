@@ -1,16 +1,8 @@
 import pandas as pd
 import os
-import config
-DATA_DIR = config.DATA_DIR
-OUTPUT_DIR = config.OUTPUT_DIR
-REPORTS_DIR = config.REPORTS_DIR
 
-
-# path1 = f'../output/table2_all.xlsx'
-# path2 = f'../output/latex.xlsx'
-
-path1 = OUTPUT_DIR / "table2_all.xlsx"
-path2 = OUTPUT_DIR / "latex.xlsx"
+path1 = f'../output/table2_all.xlsx'
+path2 = f'../output/latex.xlsx'
 table1 = pd.read_excel(path1, names=['', 'Calls', 'CallPercentage', 'Puts', 'PutPercentage'])
 table2 = pd.read_excel(path2)
 
@@ -66,16 +58,31 @@ latex_content2 = r"""
 
 We found our success in replicating the numbers closely while at the same time utilizing some knowledge in option pricing. For example, when writing the last two filters, we need to first write a program to calculate the implied volatility and the implied market interest rate, and fit the calculated implied volatility to a normal distribution. Then, remove the samples that deviate too much. Calculating the implied volatility requires solving the function inversely through the pricing formula, and it is necessary to avoid numerous issues such as data missing, data mismatch, and problems with cleaning the original data. This not only uses a lot of statistical knowledge but also requires analysis combining option pricing theory.
 
-challenges:
+We also found challenges when teammates are not familiar with what each of our code does. Specifically, when one of our teammates was working on the dodo file, he was unable to know which files to use, and what is the correct order to process, and what are the inputs and outputs of these py files. Hence it is also valuable to enhance communications betweeen group members. 
+
+The data source we used comes from OptionMetrics module in WRDS, which is a comprehensive database of historical option price, underlying security information, implied volatility, and sensitivity information for the entire US listed and equity options markets from 1996 till present.
 """
 
+caption = "Caption for the image."
+label = "fig: yourlabel"
+pic1_path = f"../output/iv_plt.png"
+
+pic1 = f"""
+\\begin{{figure}}[h]
+    \\centering
+    \\includegraphics[width=10cm]{{{pic1_path}}}
+    \\caption{{{caption}}}
+    \\label{{{label}}}
+\\end{{figure}}
+"""
 
 # Write to .tex file
-tex_file = REPORTS_DIR / "write-up.tex"
+tex_file = f'../reports/write-up.tex'
 with open(tex_file, "w") as file:
     file.write(latex_content1)
     file.write(latex_content2)
     file.write(table_content)
+    file.write(pic1)
     file.write(r"\end{document}")
     
 print("PDF created with the LaTeX table.")
